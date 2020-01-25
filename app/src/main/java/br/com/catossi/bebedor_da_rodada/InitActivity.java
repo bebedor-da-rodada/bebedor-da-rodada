@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.List;
+
 import br.com.catossi.bebedor_da_rodada.handler.DatabaseHandler;
+import br.com.catossi.bebedor_da_rodada.model.User;
 
 public class InitActivity extends AppCompatActivity {
 
@@ -42,10 +46,25 @@ public class InitActivity extends AppCompatActivity {
             }
         });
 
-        // db = new DatabaseHandler(this);
-        // db.addUser(new User(input_name.getText().toString(), Integer.parseInt(input_age.getText().toString())));
+         db = new DatabaseHandler(this);
+         List<User> listUser = db.getAllUsers();
 
+         if(listUser.size() == 0) {
+             db.addUser(new User("", "", ""));
+         } else {
+             for(User user : listUser) {
 
+                 if(!user.getEmail().equals("")) {
+                     if(!user.getNickname().equals("")) {
+                         if(!user.getName().equals("")) {
+                             Intent i = new Intent(InitActivity.this, MainActivity.class);
+                             startActivity(i);
+                             finish();
+                         }
+                     }
+                 }
+             }
+         }
     }
 
     @Override

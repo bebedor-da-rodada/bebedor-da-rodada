@@ -13,12 +13,23 @@ import android.view.View;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 
+import br.com.catossi.bebedor_da_rodada.handler.DatabaseHandler;
+import br.com.catossi.bebedor_da_rodada.handler.DatabaseIntroHandler;
+
 public class IntroActivity extends AppIntro {
 
+    DatabaseIntroHandler dbIntro;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        dbIntro = new DatabaseIntroHandler(this);
+
+        if(dbIntro.getViewIntro().equals("yes")) {
+            startActivity(new Intent(this, InitActivity.class));
+            finish();
+        }
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -35,15 +46,19 @@ public class IntroActivity extends AppIntro {
         //setSeparatorColor(Color.parseColor("#2196F3"));
 
         // Hide Skip/Done button.
-        showSkipButton(false);
-        //setProgressButtonEnabled(false);
+        showSkipButton(true);
+        setProgressButtonEnabled(true);
 
     }
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
+
+        dbIntro.addViewIntro("yes");
+
         startActivity(new Intent(this, InitActivity.class));
+        finish();
     }
 
 }

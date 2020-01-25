@@ -39,4 +39,7 @@
 
     <string name="next">SEGUINTE</string>
 
+    <string name="title_message_insert_error">Calma, calma</string>
+    <string name="message_insert_error">Para prosseguir você deve colocar um valor válido.</string>
+
 </resources>
