@@ -1,16 +1,16 @@
-package br.com.catossi.bebedor_da_rodada.ui.share;
+package br.com.catossi.bebedor_da_rodada.ui.join;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ShareViewModel extends ViewModel {
+public class JoinViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ShareViewModel() {
+    public JoinViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is share fragment");
+        mText.setValue("This is join fragment");
     }
 
     public LiveData<String> getText() {

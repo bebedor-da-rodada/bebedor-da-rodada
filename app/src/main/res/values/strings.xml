@@ -2,20 +2,41 @@
     <string name="app_name">bebedor-da-rodada</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Bebedor da Rodada</string>
+    <string name="nav_header_subtitle">Seja um vencedor!</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_home">Tela Inicial</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
+
     <string name="menu_create">Criar Rodada</string>
     <string name="menu_join">Entrar</string>
-    <string name="menu_history">Histórico de Rodadas</string>
+    <string name="menu_history">Histórico</string>
+
+
+    <string name="intro_1_title">Divirta-se</string>
+    <string name="intro_2_title">Bebidas</string>
+    <string name="intro_3_title">Beba com moderação</string>
+
+    <string name="intro_1_desc">Este app foi feito para você se divertir com os amigos</string>
+    <string name="intro_2_desc">Temos um catálogo enorme de bebidas para pontuar. Aproveite</string>
+    <string name="intro_3_desc">Por mais que seja uma competição de bebida. Não esqueça: beba com moderação.</string>
+
+
+    <string name="dont_have_access">Essa é minha primeira vez!</string>
+    <string name="have_access">Já possuo acesso</string>
+
+
+    <string name="title_name">Olá, qual seu nome?</string>
+    <string name="title_nickname">E o seu apelido? Como você gostaria de ser chamadx?</string>
+    <string name="title_email">Muito legal! Por último: Qual seu email?</string>
+
+    <string name="next">SEGUINTE</string>
 
 </resources>

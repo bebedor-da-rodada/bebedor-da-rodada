@@ -1,4 +1,4 @@
-package br.com.catossi.bebedor_da_rodada.ui.tools;
+package br.com.catossi.bebedor_da_rodada.ui.history;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,25 +6,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import br.com.catossi.bebedor_da_rodada.R;
+import br.com.catossi.bebedor_da_rodada.ui.join.JoinViewModel;
 
-public class ToolsFragment extends Fragment {
+public class HistoryFragment extends Fragment {
 
-    private ToolsViewModel toolsViewModel;
+    private HistoryViewModel historyViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        toolsViewModel =
-                ViewModelProviders.of(this).get(ToolsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_tools, container, false);
-        final TextView textView = root.findViewById(R.id.text_tools);
-        toolsViewModel.getText().observe(this, new Observer<String>() {
+        historyViewModel =
+                ViewModelProviders.of(this).get(HistoryViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_history, container, false);
+        final TextView textView = root.findViewById(R.id.text_history);
+        historyViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

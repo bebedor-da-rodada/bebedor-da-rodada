@@ -12,32 +12,22 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="br.com.catossi.bebedor_da_rodada.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_create"
+        android:name="br.com.catossi.bebedor_da_rodada.ui.create.CreateFragment"
+        android:label="@string/menu_create"
+        tools:layout="@layout/fragment_create" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="br.com.catossi.bebedor_da_rodada.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_join"
+        android:name="br.com.catossi.bebedor_da_rodada.ui.join.JoinFragment"
+        android:label="@string/menu_join"
+        tools:layout="@layout/fragment_join" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="br.com.catossi.bebedor_da_rodada.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        android:id="@+id/nav_history"
+        android:name="br.com.catossi.bebedor_da_rodada.ui.history.HistoryFragment"
+        android:label="@string/menu_history"
+        tools:layout="@layout/fragment_history" />
 
-    <fragment
-        android:id="@+id/nav_share"
-        android:name="br.com.catossi.bebedor_da_rodada.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
 
-    <fragment
-        android:id="@+id/nav_send"
-        android:name="br.com.catossi.bebedor_da_rodada.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
 </navigation>

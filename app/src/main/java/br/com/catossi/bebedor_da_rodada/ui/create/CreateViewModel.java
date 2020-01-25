@@ -1,16 +1,16 @@
-package br.com.catossi.bebedor_da_rodada.ui.gallery;
+package br.com.catossi.bebedor_da_rodada.ui.create;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class CreateViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public CreateViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("This is create fragment");
     }
 
     public LiveData<String> getText() {
