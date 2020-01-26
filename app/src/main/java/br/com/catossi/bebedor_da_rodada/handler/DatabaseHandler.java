@@ -13,7 +13,6 @@ import java.util.List;
 import br.com.catossi.bebedor_da_rodada.model.User;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
-
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "dbUser";
     private static final String TABLE_USER = "user";

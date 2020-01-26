@@ -45,6 +45,8 @@
     <string name="title_message_email_error">Ops, você não tem acesso. Faça seu cadastro.</string>
     <string name="message_email_error">É bem rápido, não se preocupe.</string>
 
+    <string name="waiting">Aguarde um momento, por favor.</string>
+
 
 
 </resources>

@@ -6,11 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.catossi.bebedor_da_rodada.model.User;
-
 public class DatabaseIntroHandler extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;

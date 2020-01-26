@@ -26,16 +26,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class EmailActivity extends AppCompatActivity {
-
-    Button btnNext;
-    EditText etEmail;
-    DatabaseHandler db;
-
+    private Button btnNext;
+    private EditText etEmail;
+    private DatabaseHandler db;
     private APIInterface apiService;
     private Call<UserResponse> callBalance;
     private Call<UserRequest> callEmail;
     private ProgressDialog progress;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,25 +56,19 @@ public class EmailActivity extends AppCompatActivity {
 
                     User user = new User();
 
-                    Log.e("TAMANHO LIST USUARIO", "" + listUser.size());
+                    Log.e("LIST USER SIZE", "" + listUser.size());
+
                     if (listUser.size() > 0) {
                         if (!listUser.get(0).getName().equals("")) {
                             user = listUser.get(0);
                             user.setEmail("" + etEmail.getText());
                             db.updateUser(user);
 
-                            progress = ProgressDialog.show(EmailActivity.this, "Carregando", "Aguarde alguns instantes...", true);
-
-                            UserInsert userInsert = new UserInsert();
-                            userInsert.setNome(user.getName());
-                            userInsert.setApelido(user.getNickname());
-                            userInsert.setEmail(user.getEmail());
-
+                            progress = ProgressDialog.show(EmailActivity.this, "Carregando", "" + R.string.waiting, true);
                             apiService = APIClient.getService().create(APIInterface.class);
-
                             callBalance = apiService.insertUser(user.getName(), user.getEmail(), user.getNickname());
 
-                            Log.e("INIT INSERT", "" + user.getEmail());
+                            Log.e("INIT REQUEST INSERT", "" + user.getEmail());
 
                             UserResponse userResponse = new UserResponse();
 
@@ -89,9 +80,9 @@ public class EmailActivity extends AppCompatActivity {
 
                                         UserResponse payloadResponse = response.body();
 
-                                        Log.e("RESULT REQUEST STATUS", payloadResponse.getStatus());
-                                        Log.e("RESULT REQUEST MESSAGE ", payloadResponse.getMessage());
-                                        Log.e("RESULT ID USUARIO", "" + payloadResponse.getData().getIdUsuario());
+                                        Log.e("RESULT - STATUS", payloadResponse.getStatus());
+                                        Log.e("RESULT - MESSAGE ", payloadResponse.getMessage());
+                                        Log.e("RESULT - ID USUARIO", "" + payloadResponse.getData().getIdUsuario());
 
                                         progress.dismiss();
 
@@ -100,22 +91,22 @@ public class EmailActivity extends AppCompatActivity {
                                         finish();
 
                                     } else {
-                                        Log.e("STATUS ERRO RETORNO", "" + response.raw().code());
-                                        Log.e("RETORNO", "" + response.body());
+                                        Log.e("STATUS ERRO", "" + response.raw().code());
+                                        Log.e("RESPONSE BODY", "" + response.body());
                                     }
 
-                                    Log.e("RESULT REQUEST", "" + response.body());
+                                    Log.e("RESPONSE BODY", "" + response.body());
                                     progress.dismiss();
                                 }
 
                                 @Override
                                 public void onFailure(Call<UserResponse> call, Throwable t) {
-                                    Log.e("BALANCE", t.toString());
+                                    Log.e("ERROR ", t.toString());
                                     progress.dismiss();
                                 }
                             });
                         } else {
-                            progress = ProgressDialog.show(EmailActivity.this, "Carregando", "Aguarde alguns instantes...", true);
+                            progress = ProgressDialog.show(EmailActivity.this, "Carregando", "" + R.string.waiting, true);
 
                             String email = etEmail.getText().toString();
 
@@ -123,7 +114,7 @@ public class EmailActivity extends AppCompatActivity {
 
                             callEmail = apiService.getUser("" + etEmail.getText().toString());
 
-                            Log.e("INIT CONSULT", "" + email);
+                            Log.e("INIT REQUEST CONSULT", "" + email);
 
 
                             UserRequest userRequest = new UserRequest();
@@ -135,14 +126,12 @@ public class EmailActivity extends AppCompatActivity {
 
                                         UserRequest payloadResponse = response.body();
 
-                                        Log.e("RESULT REQUEST", payloadResponse.getStatus());
-                                        Log.e("RESULT REQUEST", payloadResponse.getMessage());
+                                        Log.e("RESULT - STATUS", payloadResponse.getStatus());
+                                        Log.e("RESULT - MESSAGE", payloadResponse.getMessage());
 
-                                        Log.e("RESULT EMAIL", payloadResponse.getData().getUsuario().getEmail());
-                                        Log.e("RESULT NOME", payloadResponse.getData().getUsuario().getNome());
-                                        Log.e("RESULT APELIDO", payloadResponse.getData().getUsuario().getApelido());
-
-                                        progress.dismiss();
+                                        Log.e("RESULT - EMAIL", payloadResponse.getData().getUsuario().getEmail());
+                                        Log.e("RESULT - NAME", payloadResponse.getData().getUsuario().getNome());
+                                        Log.e("RESULT - NICKNAME", payloadResponse.getData().getUsuario().getApelido());
 
                                         User user = new User();
                                         user.setId(1);
@@ -152,6 +141,8 @@ public class EmailActivity extends AppCompatActivity {
 
                                         db.updateUser(user);
 
+                                        progress.dismiss();
+
                                         Intent i = new Intent(EmailActivity.this, MainActivity.class);
                                         startActivity(i);
                                         finish();
@@ -160,13 +151,13 @@ public class EmailActivity extends AppCompatActivity {
                                         goToHome();
                                     }
 
-                                    Log.e("RESULT REQUEST", "" + response.body());
+                                    Log.e("RESPONSE BODY", "" + response.body());
                                     progress.dismiss();
                                 }
 
                                 @Override
                                 public void onFailure(Call<UserRequest> call, Throwable t) {
-                                    Log.e("BALANCE", t.toString());
+                                    Log.e("ERROR ", t.toString());
                                     progress.dismiss();
                                     goToHome();
                                 }
@@ -181,7 +172,6 @@ public class EmailActivity extends AppCompatActivity {
                             .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    // Whatever...
                                 }
                             }).show();
                 }

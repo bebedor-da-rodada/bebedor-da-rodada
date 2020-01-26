@@ -48,7 +48,6 @@ public class InitActivity extends AppCompatActivity {
             }
         });
 
-
         btnDontHaveAccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +68,7 @@ public class InitActivity extends AppCompatActivity {
                      if(!user.getNickname().equals("")) {
                          if(!user.getName().equals("")) {
 
-                             progress = ProgressDialog.show(InitActivity.this, "Carregando", "Aguarde alguns instantes...", true);
+                             progress = ProgressDialog.show(InitActivity.this, "Carregando", "" + R.string.waiting, true);
 
                              String email = user.getEmail();
 
@@ -77,7 +76,7 @@ public class InitActivity extends AppCompatActivity {
 
                              callBalance = apiService.getUser(email);
 
-                             Log.e("INIT REQUEST", "" + email);
+                             Log.e("INIT REQUEST CONSULT", "" + email);
 
 
                              UserRequest userRequest = new UserRequest();
@@ -89,12 +88,10 @@ public class InitActivity extends AppCompatActivity {
 
                                          UserRequest payloadResponse = response.body();
 
-                                         Log.e("RESULT REQUEST", payloadResponse.getStatus());
-                                         Log.e("RESULT REQUEST", payloadResponse.getMessage());
-                                         Log.e("RESULT REQUEST", payloadResponse.getStatus());
+                                         Log.e("RESULT - STATUS", payloadResponse.getStatus());
+                                         Log.e("RESULT - MESSAGE", payloadResponse.getMessage());
 
                                          progress.dismiss();
-
 
                                          Intent i = new Intent(InitActivity.this, MainActivity.class);
                                          startActivity(i);
@@ -102,18 +99,16 @@ public class InitActivity extends AppCompatActivity {
 
                                      }
 
-                                     Log.e("RESULT REQUEST", "" + response.body());
+                                     Log.e("RESPONSE BODY", "" + response.body());
                                      progress.dismiss();
                                  }
 
                                  @Override
                                  public void onFailure(Call<UserRequest> call, Throwable t) {
-                                     Log.e("BALANCE", t.toString());
+                                     Log.e("ERROR ", t.toString());
                                      progress.dismiss();
                                  }
                              });
-
-
                          }
                      }
                  }

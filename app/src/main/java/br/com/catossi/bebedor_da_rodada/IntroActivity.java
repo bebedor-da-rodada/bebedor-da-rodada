@@ -40,13 +40,6 @@ public class IntroActivity extends AppIntro {
         addSlide(AppIntroFragment.newInstance(getString(R.string.intro_2_title), getString(R.string.intro_2_desc), R.drawable.img_drinks, getResources().getColor(R.color.colorPrimaryDark)));
         addSlide(AppIntroFragment.newInstance(getString(R.string.intro_3_title), getString(R.string.intro_3_desc), R.drawable.img_calm, getResources().getColor(R.color.colorPrimaryDark)));
 
-        // OPTIONAL METHODS
-        // Override bar/separator color.
-        //setBarColor(Color.parseColor("#3F51B5"));
-        //setSeparatorColor(Color.parseColor("#2196F3"));
-
-        // Hide Skip/Done button.
-        showSkipButton(true);
         setProgressButtonEnabled(true);
 
     }
