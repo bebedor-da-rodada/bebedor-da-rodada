@@ -76,7 +76,7 @@ public class InitActivity extends AppCompatActivity {
 
                              callBalance = apiService.getUser(email);
 
-                             Log.e("INIT REQUEST CONSULT", "" + email);
+                             Log.e("INIT REQUEST CONSULTx", "" + email);
 
 
                              UserRequest userRequest = new UserRequest();
