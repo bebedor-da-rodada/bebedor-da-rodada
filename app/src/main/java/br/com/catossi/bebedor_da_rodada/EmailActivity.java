@@ -64,7 +64,7 @@ public class EmailActivity extends AppCompatActivity {
                             user.setEmail("" + etEmail.getText());
                             db.updateUser(user);
 
-                            progress = ProgressDialog.show(EmailActivity.this, "Carregando", "" + R.string.waiting, true);
+                            progress = ProgressDialog.show(EmailActivity.this, "Carregando", "" + getResources().getString(R.string.waiting), true);
                             apiService = APIClient.getService().create(APIInterface.class);
                             callBalance = apiService.insertUser(user.getName(), user.getEmail(), user.getNickname());
 
@@ -106,7 +106,7 @@ public class EmailActivity extends AppCompatActivity {
                                 }
                             });
                         } else {
-                            progress = ProgressDialog.show(EmailActivity.this, "Carregando", "" + R.string.waiting, true);
+                            progress = ProgressDialog.show(EmailActivity.this, "Carregando", "" + getResources().getString(R.string.waiting), true);
 
                             String email = etEmail.getText().toString();
 

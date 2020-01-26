@@ -68,7 +68,7 @@ public class InitActivity extends AppCompatActivity {
                      if(!user.getNickname().equals("")) {
                          if(!user.getName().equals("")) {
 
-                             progress = ProgressDialog.show(InitActivity.this, "Carregando", "" + R.string.waiting, true);
+                             progress = ProgressDialog.show(InitActivity.this, "Carregando", "" + getResources().getString(R.string.waiting), true);
 
                              String email = user.getEmail();
 
