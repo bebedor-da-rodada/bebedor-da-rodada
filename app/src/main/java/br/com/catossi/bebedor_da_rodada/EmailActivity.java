@@ -64,105 +64,9 @@ public class EmailActivity extends AppCompatActivity {
                             user = listUser.get(0);
                             user.setEmail("" + etEmail.getText());
                             db.updateUser(user);
-
-                            progress = ProgressDialog.show(EmailActivity.this, "Carregando", "" + getResources().getString(R.string.waiting), true);
-                            apiService = APIClient.getService().create(APIInterface.class);
-                            callBalance = apiService.insertUser(user.getName(), user.getEmail(), user.getNickname());
-
-                            Log.e("INIT REQUEST INSERTx", "" + user.getEmail());
-
-                            UserResponse userResponse = new UserResponse();
-
-                            callBalance.enqueue(new Callback<UserResponse>() {
-                                @Override
-                                public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-
-                                    if (response.raw().code() == 200) {
-
-                                        UserResponse payloadResponse = response.body();
-
-                                        Log.e("RESULT - STATUS", payloadResponse.getStatus());
-                                        Log.e("RESULT - MESSAGE ", payloadResponse.getMessage());
-                                        Log.e("RESULT - ID USUARIO", "" + payloadResponse.getData().getIdUsuario());
-
-                                        progress.dismiss();
-
-                                        Intent i = new Intent(EmailActivity.this, MainActivity.class);
-                                        startActivity(i);
-                                        finish();
-
-                                    } else {
-                                        Log.e("STATUS ERRO", "" + response.raw().code());
-                                        Log.e("RESPONSE BODY", "" + response.body());
-                                    }
-
-                                    Log.e("RESPONSE BODY", "" + response.body());
-                                    progress.dismiss();
-                                }
-
-                                @Override
-                                public void onFailure(Call<UserResponse> call, Throwable t) {
-                                    Log.e("ERROR ", t.toString());
-                                    progress.dismiss();
-                                }
-                            });
+                            requestInsert(user);
                         } else {
-                            progress = ProgressDialog.show(EmailActivity.this, "Carregando", "" + getResources().getString(R.string.waiting), true);
-
-                            String email = etEmail.getText().toString();
-
-                            apiService = APIClient.getService().create(APIInterface.class);
-
-                            callEmail = apiService.getUser("" + etEmail.getText().toString());
-
-                            Log.e("INIT REQUEST CONSULT", "" + email);
-
-
-                            UserRequest userRequest = new UserRequest();
-
-                            callEmail.enqueue(new Callback<UserRequest>() {
-                                @Override
-                                public void onResponse(Call<UserRequest> call, Response<UserRequest> response) {
-                                    if (response.raw().code() == 200) {
-
-                                        UserRequest payloadResponse = response.body();
-
-                                        Log.e("RESULT - STATUS", payloadResponse.getStatus());
-                                        Log.e("RESULT - MESSAGE", payloadResponse.getMessage());
-
-                                        Log.e("RESULT - EMAIL", payloadResponse.getData().getUsuario().getEmail());
-                                        Log.e("RESULT - NAME", payloadResponse.getData().getUsuario().getNome());
-                                        Log.e("RESULT - NICKNAME", payloadResponse.getData().getUsuario().getApelido());
-
-                                        User user = new User();
-                                        user.setId(1);
-                                        user.setEmail(payloadResponse.getData().getUsuario().getEmail());
-                                        user.setName(payloadResponse.getData().getUsuario().getNome());
-                                        user.setNickname(payloadResponse.getData().getUsuario().getApelido());
-
-                                        db.updateUser(user);
-
-                                        progress.dismiss();
-
-                                        Intent i = new Intent(EmailActivity.this, MainActivity.class);
-                                        startActivity(i);
-                                        finish();
-
-                                    } else {
-                                        goToHome();
-                                    }
-
-                                    Log.e("RESPONSE BODY", "" + response.body());
-                                    progress.dismiss();
-                                }
-
-                                @Override
-                                public void onFailure(Call<UserRequest> call, Throwable t) {
-                                    Log.e("ERROR ", t.toString());
-                                    progress.dismiss();
-                                    goToHome();
-                                }
-                            });
+                            requestConsult();
                         }
                     }
                 } else {
@@ -177,6 +81,108 @@ public class EmailActivity extends AppCompatActivity {
                             }).show();
                 }
 
+            }
+        });
+    }
+
+    private void requestInsert(User user) {
+        progress = ProgressDialog.show(EmailActivity.this, "Carregando", "" + getResources().getString(R.string.waiting), true);
+        apiService = APIClient.getService().create(APIInterface.class);
+        callBalance = apiService.insertUser(user.getName(), user.getEmail(), user.getNickname());
+
+        Log.e("INIT REQUEST INSERT", "" + user.getEmail());
+
+        UserResponse userResponse = new UserResponse();
+
+        callBalance.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+
+                if (response.raw().code() == 200) {
+
+                    UserResponse payloadResponse = response.body();
+
+                    Log.e("RESULT - STATUS", payloadResponse.getStatus());
+                    Log.e("RESULT - MESSAGE ", payloadResponse.getMessage());
+                    Log.e("RESULT - ID USUARIO", "" + payloadResponse.getData().getIdUsuario());
+
+                    progress.dismiss();
+
+                    Intent i = new Intent(EmailActivity.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+
+                } else {
+                    Log.e("STATUS ERRO", "" + response.raw().code());
+                    Log.e("RESPONSE BODY", "" + response.body());
+                }
+
+                Log.e("RESPONSE BODY", "" + response.body());
+                progress.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Log.e("ERROR ", t.toString());
+                progress.dismiss();
+            }
+        });
+    }
+
+    private void requestConsult() {
+        progress = ProgressDialog.show(EmailActivity.this, "Carregando", "" + getResources().getString(R.string.waiting), true);
+
+        String email = etEmail.getText().toString();
+
+        apiService = APIClient.getService().create(APIInterface.class);
+
+        callEmail = apiService.getUser("" + etEmail.getText().toString());
+
+        Log.e("INIT REQUEST CONSULT", "" + email);
+
+        UserRequest userRequest = new UserRequest();
+
+        callEmail.enqueue(new Callback<UserRequest>() {
+            @Override
+            public void onResponse(Call<UserRequest> call, Response<UserRequest> response) {
+                if (response.raw().code() == 200) {
+
+                    UserRequest payloadResponse = response.body();
+
+                    Log.e("RESULT - STATUS", payloadResponse.getStatus());
+                    Log.e("RESULT - MESSAGE", payloadResponse.getMessage());
+
+                    Log.e("RESULT - EMAIL", payloadResponse.getData().getUsuario().getEmail());
+                    Log.e("RESULT - NAME", payloadResponse.getData().getUsuario().getNome());
+                    Log.e("RESULT - NICKNAME", payloadResponse.getData().getUsuario().getApelido());
+
+                    User user = new User();
+                    user.setId(1);
+                    user.setEmail(payloadResponse.getData().getUsuario().getEmail());
+                    user.setName(payloadResponse.getData().getUsuario().getNome());
+                    user.setNickname(payloadResponse.getData().getUsuario().getApelido());
+
+                    db.updateUser(user);
+
+                    progress.dismiss();
+
+                    Intent i = new Intent(EmailActivity.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+
+                } else {
+                    goToHome();
+                }
+
+                Log.e("RESPONSE BODY", "" + response.body());
+                progress.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<UserRequest> call, Throwable t) {
+                Log.e("ERROR ", t.toString());
+                progress.dismiss();
+                goToHome();
             }
         });
     }

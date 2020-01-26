@@ -12,14 +12,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InitActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".EmailActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".NicknameActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".NameActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ShareRoundActivity"></activity>
+        <activity
+            android:name=".InitActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EmailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NicknameActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".NameActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".IntroActivity"
             android:theme="@style/AppTheme.NoActionBar" />

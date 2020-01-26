@@ -2,10 +2,14 @@
 <resources>
     <color name="colorPrimary">#EDA73B</color>
     <color name="colorPrimaryDark">#EDA73B</color>
+    <color name="colorPrimaryDarkDark">#91642F</color>
     <color name="colorAccent">#F9E1AA</color>
 
 
     <color name="sectionSelected">#FFFFFF</color>
     <color name="textSectionSelected">#F9E1AA</color>
     <color name="background_list">#EBEBEB</color>
+
+    <color name="grey_dark">#919191</color>
+    <color name="grey_dark_dark">#464646</color>
 </resources>
