@@ -6,50 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".EmailActivity">
 
+
     <LinearLayout
+
         android:gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark">
 
+
+
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
             android:src="@drawable/icon_beer"/>
 
         <LinearLayout
-            android:layout_margin="50dp"
-            android:padding="50dp"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="150dp"
+            android:background="@color/sectionSelected"
+            android:gravity="center"
             android:orientation="vertical"
+            android:padding="50dp"
             android:textAlignment="center"
-            android:background="@color/sectionSelected">
+            >
 
             <TextView
-                android:textSize="20dp"
-                android:gravity="center"
-                android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title_email"/>
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/title_email"
+                android:textSize="20dp" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_email"
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" />
 
             <Button
                 android:id="@+id/btn_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@color/colorAccent"
-                android:textColor="@color/colorPrimaryDark"
                 android:text="@string/next"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:textColor="@color/colorPrimaryDark" />
         </LinearLayout>
 
     </LinearLayout>

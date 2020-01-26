@@ -26,7 +26,7 @@
 
     <string name="intro_1_desc">Este app foi feito para você se divertir com os amigos</string>
     <string name="intro_2_desc">Temos um catálogo enorme de bebidas para pontuar. Aproveite</string>
-    <string name="intro_3_desc">Por mais que seja uma competição de bebida. Não esqueça: beba com moderação.</string>
+    <string name="intro_3_desc">Por mais que seja uma competição. Não esqueça: beba com moderação.</string>
 
 
     <string name="dont_have_access">Essa é minha primeira vez!</string>
@@ -34,7 +34,7 @@
 
 
     <string name="title_name">Olá, qual seu nome?</string>
-    <string name="title_nickname">E o seu apelido? Como você gostaria de ser chamadx?</string>
+    <string name="title_nickname">E o seu apelido? Como você gostaria de ser chamado(a)?</string>
     <string name="title_email">Muito legal! Por último: Qual seu email?</string>
 
     <string name="next">SEGUINTE</string>
