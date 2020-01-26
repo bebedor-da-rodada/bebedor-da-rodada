@@ -42,6 +42,9 @@
     <string name="title_message_insert_error">Calma, calma</string>
     <string name="message_insert_error">Para prosseguir você deve colocar um valor válido.</string>
 
+    <string name="title_message_validation_email_error">Xiii...</string>
+    <string name="message_validation_email_error">Para prosseguir você deve utilizar um e-mail válido.</string>
+
     <string name="title_message_email_error">Ops, você não tem acesso. Faça seu cadastro.</string>
     <string name="message_email_error">É bem rápido, não se preocupe.</string>
 
