@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShareRoundActivity"></activity>
+        <activity android:name=".ShareRoundActivity"
+
+            android:label="@string/share_round_screen"></activity>
         <activity
             android:name=".InitActivity"
             android:theme="@style/AppTheme.NoActionBar" />

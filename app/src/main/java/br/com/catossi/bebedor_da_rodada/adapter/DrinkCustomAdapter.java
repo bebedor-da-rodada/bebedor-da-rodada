@@ -92,7 +92,7 @@ public class DrinkCustomAdapter extends RecyclerView.Adapter<DrinkCustomAdapter.
             public void onClick(View v) {
 
 
-                if(!listSelectedDrinks(position)) {
+                if(!listSelectedDrinks(Integer.parseInt(drinkList.get(position).getId()))) {
                     holder.btn_add.setImageResource(R.drawable.ic_close_orange);
                     holder.btn_add.setBackgroundResource(R.color.colorPrimaryDarkDark);
                 } else {

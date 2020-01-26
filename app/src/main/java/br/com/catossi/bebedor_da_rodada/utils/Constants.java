@@ -10,4 +10,5 @@ public class Constants {
     public static final String URL_USUARIO = "usuario/{email}";
     public static final String URL_USUARIO_INSERT = "usuario";
     public static final String URL_BEBIDA = "bebida";
+    public static final String URL_RODADA = "rodada";
 }

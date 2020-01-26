@@ -28,11 +28,13 @@ import br.com.catossi.bebedor_da_rodada.EmailActivity;
 import br.com.catossi.bebedor_da_rodada.InitActivity;
 import br.com.catossi.bebedor_da_rodada.MainActivity;
 import br.com.catossi.bebedor_da_rodada.R;
+import br.com.catossi.bebedor_da_rodada.ShareRoundActivity;
 import br.com.catossi.bebedor_da_rodada.adapter.DrinkCustomAdapter;
 import br.com.catossi.bebedor_da_rodada.handler.DatabaseHandler;
 import br.com.catossi.bebedor_da_rodada.model.DrinkRequest;
 import br.com.catossi.bebedor_da_rodada.model.DrinkResponse;
 import br.com.catossi.bebedor_da_rodada.model.Round;
+import br.com.catossi.bebedor_da_rodada.model.RoundResponse;
 import br.com.catossi.bebedor_da_rodada.model.User;
 import br.com.catossi.bebedor_da_rodada.model.UserRequest;
 import br.com.catossi.bebedor_da_rodada.service.APIClient;
@@ -55,8 +57,8 @@ public class CreateFragment extends Fragment {
     private EditText etDescription;
     private Button btnCreateRound;
     private Call<UserRequest> callEmail;
+    private Call<RoundResponse> callRound;
     private DatabaseHandler db;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -155,10 +157,6 @@ public class CreateFragment extends Fragment {
         Log.d("LOG ROUNDTITLE ", "" + roundTitle);
         Log.d("LOG ROUNDDESCRIPTION ", "" + roundDescription);
 
-        // CONSULTAR EMAIL PARA PEGAR ID DO USUARIO
-        // INSERIR RODADA E PEGAR CODIGO
-        // ABRIR TELA COM CODIGO DA RODADA PARA COMPARTILHAR
-
         String email = "";
         List<User> userList = db.getAllUsers();
         if(userList.size() > 0) {
@@ -187,18 +185,56 @@ public class CreateFragment extends Fragment {
                 }).show();
     }
 
-    private void createRoundRequest(View root, Round round) {
-        Log.d("LOG ROUND ", "ROUNDDDD");
-        Log.d("LOG DESCRICAO ", "" + round.getDescricao());
-        Log.d("LOG ID USUARIO ", "" + round.getIdUsuarioCriador());
-        Log.d("LOG TITULO ", "" + round.getTitulo());
-
-        for (Integer drink : round.getBebidas()) {
-            Log.d("LOG BEBIDA ", "" + drink);
-        }
+    private void createRoundRequest(final View root, Round round) {
+        Log.d("- LOG ROUND ", "ROUNDDDD");
+        Log.d("- LOG DESCRICAO ", "" + round.getDescricao());
+        Log.d("- LOG ID USUARIO ", "" + round.getIdUsuarioCriador());
+        Log.d("- LOG TITULO ", "" + round.getTitulo());
+        Log.d("- LOG BEBIDA ", "" + round.getBebidas());
 
 
 
+        progress = ProgressDialog.show(root.getContext(), "Carregando", "" + getResources().getString(R.string.waiting), true);
+        callRound = apiService.insertRound(round.getDescricao(), round.getTitulo(), round.getBebidas(), round.getIdUsuarioCriador());
+
+        Log.e("INIT REQUEST ROUND", "MESSAGE");
+
+
+        callRound.enqueue(new Callback<RoundResponse>() {
+            @Override
+            public void onResponse(Call<RoundResponse> call, Response<RoundResponse> response) {
+                if (response.raw().code() == 200) {
+
+                    RoundResponse payloadResponse = response.body();
+
+                    Log.e("RESULT - STATUS", payloadResponse.getStatus());
+                    Log.e("RESULT - MESSAGE", payloadResponse.getMessage());
+
+                    progress.dismiss();
+
+                    Log.d("ROUND CODE", "" + payloadResponse.getData().getCodigo());
+
+                    Intent i = new Intent(root.getContext(), ShareRoundActivity.class);
+                    i.putExtra("ROUND_CODE", "" + payloadResponse.getData().getCodigo());
+                    startActivity(i);
+                    getActivity().finish();
+
+                } else {
+                    createErro(root);
+                }
+
+                Log.e("RESULT - STATUS", "" + response.raw().code());
+                Log.e("RESPONSE BODY", "" + response.body());
+                progress.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<RoundResponse> call, Throwable t) {
+                Log.e("ERROR ", t.toString());
+                progress.dismiss();
+                createErro(root);
+            }
+        });
     }
 
     private void findUserAndCreateRound(String email,final View root, final Round round) {
