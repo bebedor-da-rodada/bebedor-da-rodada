@@ -1,5 +1,6 @@
 package br.com.catossi.bebedor_da_rodada.service;
 
+import br.com.catossi.bebedor_da_rodada.model.DrinkResponse;
 import br.com.catossi.bebedor_da_rodada.model.User;
 import br.com.catossi.bebedor_da_rodada.model.UserInsert;
 import br.com.catossi.bebedor_da_rodada.model.UserRequest;
@@ -21,6 +22,9 @@ public interface APIInterface {
 
     @GET(Constants.URL_USUARIO)
     Call<UserRequest> getUser(@Path("email") String email);
+
+    @GET(Constants.URL_BEBIDA)
+    Call<DrinkResponse> getDrinks();
 
     @Headers("Content-Type: application/x-www-form-urlencoded")
     @FormUrlEncoded

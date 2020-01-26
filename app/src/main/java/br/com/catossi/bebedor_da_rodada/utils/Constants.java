@@ -9,4 +9,5 @@ public class Constants {
     public static final String BASE_URL = "http://pomulo.com.br/bebum/api/v1/";
     public static final String URL_USUARIO = "usuario/{email}";
     public static final String URL_USUARIO_INSERT = "usuario";
+    public static final String URL_BEBIDA = "bebida";
 }

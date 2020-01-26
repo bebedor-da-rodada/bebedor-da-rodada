@@ -50,6 +50,17 @@
 
     <string name="waiting">Aguarde um momento, por favor.</string>
 
+    <string name="title_create">Qual o nome dessa rodada?</string>
+    <string name="description_create">E a descrição? Tem alguma regra? Diz ai.</string>
+
+    <string name="create_round">#partiu. Criar rodada!</string>
+    <string name="title_example_row_item_drinks">Bebida Catuaba</string>
+    <string name="title_pont_example_row_item_drinks">125 pont.</string>
+    <string name="title_content_example_row_item_drinks">álc. 24,5% vol.</string>
+
+
+    <string name="btn_add_drink">ADD</string>
+    <string name="btn_added_drink">Remover</string>
 
 
 </resources>
