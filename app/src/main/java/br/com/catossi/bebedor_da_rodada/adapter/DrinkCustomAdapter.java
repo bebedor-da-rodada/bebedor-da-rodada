@@ -4,8 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -15,38 +21,32 @@ import br.com.catossi.bebedor_da_rodada.model.DrinkRequest;
 public class DrinkCustomAdapter extends RecyclerView.Adapter<DrinkCustomAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<DrinkRequest> offerList;
+    private List<DrinkRequest> drinkList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-//        TextView tv_price_unit;
-//        TextView tv_name_company;
-//        //        TextView tv_name_product;
-//        TextView tv_distance;
-//        TextView tv_qtd_offers_company;
-//        TextView tv_type_company;
-//        ImageView iv_icon;
-//        ImageView iv_star;
-//        LinearLayout ll_line;
+
+
+        TextView tv_title, tv_score, tv_content;
+        ImageView iv_icon;
+        Button btn_add;
+        LinearLayout ll_line;
 
         public MyViewHolder(View view) {
             super(view);
 
-//            tv_price_unit = (TextView) view.findViewById(R.id.tv_price_unit);
-//            tv_name_company = (TextView) view.findViewById(R.id.tv_name_company);
-////            tv_name_product = (TextView) view.findViewById(R.id.tv_name_product);
-//            tv_distance = (TextView) view.findViewById(R.id.tv_distance);
-//            tv_qtd_offers_company = (TextView) view.findViewById(R.id.tv_qtd_offers_company);
-//            tv_type_company = (TextView) view.findViewById(R.id.tv_type_company);
-//
-//            iv_icon = (ImageView) view.findViewById(R.id.iv_icon);
-//            iv_star = (ImageView) view.findViewById(R.id.iv_star);
-//            ll_line = (LinearLayout) view.findViewById(R.id.ll_line);
+            tv_title =  view.findViewById(R.id.tv_title);
+            tv_score =  view.findViewById(R.id.tv_score);
+            tv_content =  view.findViewById(R.id.tv_content);
+            iv_icon =  view.findViewById(R.id.iv_icon);
+            btn_add =  view.findViewById(R.id.btn_add);
+            ll_line =  view.findViewById(R.id.ll_line);
+
         }
     }
 
-    public DrinkCustomAdapter(Context mContext, List<DrinkRequest> offerList) {
+    public DrinkCustomAdapter(Context mContext, List<DrinkRequest> drinkList) {
         this.mContext = mContext;
-        this.offerList = offerList;
+        this.drinkList = drinkList;
     }
 
     @Override
@@ -60,14 +60,17 @@ public class DrinkCustomAdapter extends RecyclerView.Adapter<DrinkCustomAdapter.
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
 
-//        final OfferProduct offerProduct = offerList.get(position);
-//        holder.tv_price_unit.setText("Preço (Unidade): " + String.valueOf(offerProduct.getPrice_unit()));
-//        holder.tv_name_company.setText("Nome da Empresa: " + String.valueOf(offerProduct.getName_company()));
-////        holder.tv_name_product.setText("Name Product/Service: " + String.valueOf(offerProduct.getProduct()));
-//        holder.tv_distance.setText("" + offerProduct.getDistance() + "km");
-//        holder.tv_qtd_offers_company.setText("Quantidade de ofertas feitas pela companhia: " + String.valueOf(offerProduct.getQtd_offers_company()));
-//        holder.tv_type_company.setText("Tipo da companhia (porte): " + offerProduct.getType_company());
-//
+        final DrinkRequest drinkRequest = drinkList.get(position);
+        holder.tv_title.setText("" + drinkRequest.getTitulo());
+        holder.tv_content.setText("álc. " + drinkRequest.getTeor() + "% vol.");
+        holder.tv_score.setText("" + drinkRequest.getPontuacao());
+
+        if(position % 2 == 0) {
+            holder.ll_line.setBackgroundResource(R.color.sectionSelected);
+        }
+
+        Glide.with(mContext).load(drinkRequest.getFoto()).into(holder.iv_icon);
+
 //        if(offerProduct.isInterested()) {
 //            holder.iv_star.setVisibility(View.VISIBLE);
 //        }
@@ -85,6 +88,6 @@ public class DrinkCustomAdapter extends RecyclerView.Adapter<DrinkCustomAdapter.
 
     @Override
     public int getItemCount() {
-        return offerList.size();
+        return drinkList.size();
     }
 }

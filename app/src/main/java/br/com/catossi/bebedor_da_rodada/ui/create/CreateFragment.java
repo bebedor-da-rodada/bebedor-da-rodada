@@ -54,13 +54,13 @@ public class CreateFragment extends Fragment {
     }
 
     private void getDrinks(final View root) {
-        progress = ProgressDialog.show(root.getContext(), "Carregando", "" + R.string.waiting, true);
+        progress = ProgressDialog.show(root.getContext(), "Carregando", "" + getResources().getString(R.string.waiting), true);
 
         apiService = APIClient.getService().create(APIInterface.class);
 
         callDrinks = apiService.getDrinks();
 
-        Log.e("INIT REQUEST CONSULT", " DRINKS" );
+        Log.e("INIT REQUEST CONSULT", " DRINKS");
 
         callDrinks.enqueue(new Callback<DrinkResponse>() {
             @Override
@@ -91,17 +91,17 @@ public class CreateFragment extends Fragment {
     }
 
     private void setListDrinks(View root) {
-        Log.d("LOG MESSAGE " ,  "" + drinkResponse.getMessage());
-        Log.d("LOG STATUS " ,  "" + drinkResponse.getStatus());
-        Log.d("LOG DATA " ,  "" + drinkResponse.getData());
+        Log.d("LOG MESSAGE ", "" + drinkResponse.getMessage());
+        Log.d("LOG STATUS ", "" + drinkResponse.getStatus());
+        Log.d("LOG DATA ", "" + drinkResponse.getData());
 
-        for(DrinkRequest drink : drinkResponse.getData().getBebidas()) {
-            Log.d("LOG BEBIDA " ,  "" + drink.getId());
-            Log.d("LOG TITULO " ,  "" + drink.getTitulo());
-            Log.d("LOG DESCRICAO " ,  "" + drink.getDescricao());
-            Log.d("LOG FOTO " ,  "" + drink.getFoto());
-            Log.d("LOG PONTUACAO " ,  "" + drink.getPontuacao());
-            Log.d("LOG TEOR " ,  "" + drink.getTeor());
+        for (DrinkRequest drink : drinkResponse.getData().getBebidas()) {
+            Log.d("LOG BEBIDA ", "" + drink.getId());
+            Log.d("LOG TITULO ", "" + drink.getTitulo());
+            Log.d("LOG DESCRICAO ", "" + drink.getDescricao());
+            Log.d("LOG FOTO ", "" + drink.getFoto());
+            Log.d("LOG PONTUACAO ", "" + drink.getPontuacao());
+            Log.d("LOG TEOR ", "" + drink.getTeor());
         }
 
         recyclerView = (RecyclerView) root.findViewById(R.id.drinkList);

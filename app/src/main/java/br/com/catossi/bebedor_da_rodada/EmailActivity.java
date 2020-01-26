@@ -61,9 +61,6 @@ public class EmailActivity extends AppCompatActivity {
 
                     if (listUser.size() > 0) {
                         if (!listUser.get(0).getName().equals("")) {
-
-
-
                             user = listUser.get(0);
                             user.setEmail("" + etEmail.getText());
                             db.updateUser(user);

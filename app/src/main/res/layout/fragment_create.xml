@@ -23,7 +23,7 @@
 
             <TextView
                 android:textSize="20dp"
-                android:gravity="center"
+                android:gravity="left"
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -31,6 +31,7 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_title"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -38,7 +39,7 @@
             <TextView
                 android:layout_marginTop="40dp"
                 android:textSize="20dp"
-                android:gravity="center"
+                android:gravity="left"
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -46,6 +47,7 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:lines="4"
+                android:layout_marginLeft="20dp"
                 android:maxLines="4"
                 android:minLines="2"
                 android:id="@+id/et_description"
@@ -58,16 +60,15 @@
 
         </LinearLayout>
             <TextView
+                android:layout_marginLeft="20dp"
                 android:id="@+id/tv_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="left"
                 android:text="@string/title_list_create"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+                android:textSize="20dp" />
 
             <View
                 android:background="@color/colorPrimaryDark"
@@ -78,7 +79,7 @@
 
             android:id="@+id/drinkList"
             android:layout_width="match_parent"
-            android:layout_height="300dp" />
+            android:layout_height="match_parent" />
 
         <Button
 
