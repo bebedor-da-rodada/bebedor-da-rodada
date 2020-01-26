@@ -2,6 +2,7 @@ package br.com.catossi.bebedor_da_rodada;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,12 +13,22 @@ import java.util.List;
 
 import br.com.catossi.bebedor_da_rodada.handler.DatabaseHandler;
 import br.com.catossi.bebedor_da_rodada.model.User;
+import br.com.catossi.bebedor_da_rodada.model.UserRequest;
+import br.com.catossi.bebedor_da_rodada.service.APIClient;
+import br.com.catossi.bebedor_da_rodada.service.APIInterface;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class InitActivity extends AppCompatActivity {
 
-    Button btnDontHaveAccess;
-    Button btnHaveAccess;
-    DatabaseHandler db;
+    private Button btnDontHaveAccess;
+    private Button btnHaveAccess;
+    private DatabaseHandler db;
+
+    private APIInterface apiService;
+    private Call<UserRequest> callBalance;
+    private ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +42,7 @@ public class InitActivity extends AppCompatActivity {
         btnHaveAccess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(InitActivity.this, MainActivity.class);
+                Intent i = new Intent(InitActivity.this, EmailActivity.class);
                 startActivity(i);
                 finish();
             }
@@ -57,9 +68,52 @@ public class InitActivity extends AppCompatActivity {
                  if(!user.getEmail().equals("")) {
                      if(!user.getNickname().equals("")) {
                          if(!user.getName().equals("")) {
-                             Intent i = new Intent(InitActivity.this, MainActivity.class);
-                             startActivity(i);
-                             finish();
+
+                             progress = ProgressDialog.show(InitActivity.this, "Carregando", "Aguarde alguns instantes...", true);
+
+                             String email = user.getEmail();
+
+                             apiService = APIClient.getService().create(APIInterface.class);
+
+                             callBalance = apiService.getUser(email);
+
+                             Log.e("INIT REQUEST", "" + email);
+
+
+                             UserRequest userRequest = new UserRequest();
+
+                             callBalance.enqueue(new Callback<UserRequest>() {
+                                 @Override
+                                 public void onResponse(Call<UserRequest> call, Response<UserRequest> response) {
+                                     if (response.raw().code() == 200) {
+
+                                         UserRequest payloadResponse = response.body();
+
+                                         Log.e("RESULT REQUEST", payloadResponse.getStatus());
+                                         Log.e("RESULT REQUEST", payloadResponse.getMessage());
+                                         Log.e("RESULT REQUEST", payloadResponse.getStatus());
+
+                                         progress.dismiss();
+
+
+                                         Intent i = new Intent(InitActivity.this, MainActivity.class);
+                                         startActivity(i);
+                                         finish();
+
+                                     }
+
+                                     Log.e("RESULT REQUEST", "" + response.body());
+                                     progress.dismiss();
+                                 }
+
+                                 @Override
+                                 public void onFailure(Call<UserRequest> call, Throwable t) {
+                                     Log.e("BALANCE", t.toString());
+                                     progress.dismiss();
+                                 }
+                             });
+
+
                          }
                      }
                  }
