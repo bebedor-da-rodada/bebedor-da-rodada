@@ -58,6 +58,6 @@
 
     <string name="btn_add_drink">ADD</string>
     <string name="btn_added_drink">Remover</string>
-
+    <string name="title_list_create">Escolha as bebidas que irão fazer parte da rodada</string>
 
 </resources>
