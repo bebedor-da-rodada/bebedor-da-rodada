@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,7 +51,7 @@ public class EmailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.e("EMAIL ", "" + etEmail.getText().toString());
 
-                if (!etEmail.getText().toString().equals("")) {
+                if (!etEmail.getText().toString().equals("") && validateEmail()) {
 
                     List<User> listUser = db.getAllUsers();
 
@@ -60,6 +61,9 @@ public class EmailActivity extends AppCompatActivity {
 
                     if (listUser.size() > 0) {
                         if (!listUser.get(0).getName().equals("")) {
+
+
+
                             user = listUser.get(0);
                             user.setEmail("" + etEmail.getText());
                             db.updateUser(user);
@@ -166,8 +170,8 @@ public class EmailActivity extends AppCompatActivity {
                     }
                 } else {
                     new AlertDialog.Builder(EmailActivity.this)
-                            .setTitle(R.string.title_message_insert_error)
-                            .setMessage(R.string.message_insert_error)
+                            .setTitle(R.string.title_message_validation_email_error)
+                            .setMessage(R.string.message_validation_email_error)
                             .setCancelable(false)
                             .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                                 @Override
@@ -175,6 +179,7 @@ public class EmailActivity extends AppCompatActivity {
                                 }
                             }).show();
                 }
+
             }
         });
     }
@@ -192,6 +197,21 @@ public class EmailActivity extends AppCompatActivity {
                         finish();
                     }
                 }).show();
+    }
+
+    private boolean validateEmail() {
+        String emailInput = etEmail.getText().toString().trim();
+
+        if (emailInput.isEmpty()) {
+            etEmail.setError("Campo está vazio");
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+            etEmail.setError("email invalido");
+        } else {
+            etEmail.setError(null);
+            return true;
+        }
+
+        return false;
     }
 
     @Override
