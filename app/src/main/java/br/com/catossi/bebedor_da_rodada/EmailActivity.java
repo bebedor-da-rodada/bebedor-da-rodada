@@ -69,7 +69,7 @@ public class EmailActivity extends AppCompatActivity {
                             apiService = APIClient.getService().create(APIInterface.class);
                             callBalance = apiService.insertUser(user.getName(), user.getEmail(), user.getNickname());
 
-                            Log.e("INIT REQUEST INSERT", "" + user.getEmail());
+                            Log.e("INIT REQUEST INSERTx", "" + user.getEmail());
 
                             UserResponse userResponse = new UserResponse();
 
