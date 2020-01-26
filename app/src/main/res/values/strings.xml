@@ -34,7 +34,7 @@
 
 
     <string name="title_name">Olá, qual seu nome?</string>
-    <string name="title_nickname">E o seu apelido? Como você gostaria de ser chamado(a)?</string>
+    <string name="title_nickname">Qual seu apelido de bar?</string>
     <string name="title_email">Por último: Qual seu email?</string>
 
     <string name="next">SEGUINTE</string>

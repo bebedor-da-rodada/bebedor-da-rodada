@@ -24,11 +24,11 @@
             android:src="@drawable/icon_beer"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="150dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/sectionSelected"
             android:gravity="center"
             android:orientation="vertical"
